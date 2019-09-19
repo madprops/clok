@@ -1,6 +1,6 @@
 use crate::
 {
-    s, VERSION
+    s, VERSION,
 };
 
 use clap::

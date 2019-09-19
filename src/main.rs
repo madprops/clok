@@ -1,4 +1,4 @@
-pub const VERSION: &str = "v1.1.0";
+pub const VERSION: &str = "v1.2.0";
 pub const DEF_HOURS_COLOR: &str = "green";
 pub const DEF_MINUTES_COLOR: &str = "blue";
 pub const DEF_PM_COLOR: &str = "red";
@@ -22,10 +22,6 @@ use crate::
     {
         change_screen,
     },
-    time::
-    {
-        start_time_loop,
-    }
 };
 
 // Start of the program
@@ -33,6 +29,5 @@ fn main()
 {
     let args = check_args();
     change_screen();
-    start_ctrlc();
-    start_time_loop(&args);
+    start_ctrlc(args);
 }

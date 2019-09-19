@@ -5,7 +5,7 @@ use crate::
 
 use std::
 {
-    process
+    process,
 };
 
 use termion::
@@ -33,6 +33,6 @@ pub fn exit() -> !
     p!(format!("{}{}",
         cursor::Show,
         screen::ToMainScreen));
-        
+
     process::exit(0)
 }

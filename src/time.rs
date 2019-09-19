@@ -33,7 +33,7 @@ use termion::
 };
 
 // Start the loop to update the clock
-pub fn start_time_loop(args: &Args)
+pub fn start_time_loop(args: Args)
 {
     let mut last_mins: i8 = -1;
 
@@ -45,7 +45,7 @@ pub fn start_time_loop(args: &Args)
         if mins != last_mins
         {
             last_mins = mins;
-            update_time(args, now);
+            update_time(&args, now);
         }
 
         let sd = Duration::from_millis(TIME_LOOP_DELAY);
