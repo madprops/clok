@@ -100,8 +100,8 @@ pub fn update_time(args: &Args, now: DateTime<Local>)
         height = max(max(hd.1, md.1), dd.1);
     }
 
-    // Hide the cursor and clear all
-    p!(format!("{}{}", cursor::Hide, clear::All));
+    // Clear all
+    p!("{}", clear::All);
 
     // Print the hour
     for line in h.lines()

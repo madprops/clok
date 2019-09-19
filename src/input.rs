@@ -1,12 +1,11 @@
 use crate::
 {
-    screen::exit
+    screen::exit,
 };
 
 use std::
 {
     thread,
-    io::stdin,
     sync::
     {
         Arc,
@@ -17,29 +16,10 @@ use std::
     }
 };
 
-use termion::input::TermRead;
-
-// Start input detection
-pub fn start_input()
+// Detect ctrl+c 
+// to exit the program
+pub fn start_ctrlc()
 {
-    // If any key is detected
-    // exit the program
-    thread::spawn(move || 
-    {
-        let stdin = stdin();
-
-        let _ = match stdin.events().next()
-        {
-            Some(_) =>
-            {
-                exit();
-            }
-            None => ()
-        };
-    });
-
-    // Detect ctrl+c 
-    // to exit the program
     thread::spawn(move || 
     {
         let running = Arc::new(AtomicBool::new(true));

@@ -5,32 +5,34 @@ use crate::
 
 use std::
 {
-    process,
-    io::{stdout, Write},
+    process
 };
 
 use termion::
 {
-    raw::IntoRawMode,
+    cursor, screen,
+    terminal_size,
 };
 
 // Switch to the alternative screen
 // Place the cursor at the bottom left
+// and hide the cursor
 pub fn change_screen()
 {
-    p!("{}", termion::screen::ToAlternateScreen);
-    let size = termion::terminal_size().unwrap();
-    let mut stdout = stdout().into_raw_mode().unwrap();
-    write!(stdout, "{}", termion::cursor::Goto(1, size.1)).unwrap();
+    p!("{}", screen::ToAlternateScreen);
+    let size = terminal_size().unwrap();
+    p!(format!("{}{}", 
+        cursor::Goto(1, size.1),
+        cursor::Hide))
 }
 
 // Centralized function to exit the program
 // Switches back to main screen before exiting
 pub fn exit() -> !
 {
-    p!(format!("{}{}", 
-        termion::cursor::Show,
-        termion::screen::ToMainScreen));
-
+    p!(format!("{}{}",
+        cursor::Show,
+        screen::ToMainScreen));
+        
     process::exit(0)
 }
