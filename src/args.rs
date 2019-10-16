@@ -41,6 +41,10 @@ pub fn check_args() -> Args
         .long("no-pm")
         .multiple(false)
         .help("Don't show AM/PM"))        
+    .arg(Arg::with_name("show_date")
+        .long("show-date")
+        .multiple(false)
+        .help("Don't show AM/PM"))        
     .get_matches();
 
     let hours_color = if let Some(x) = matches.value_of("hours_color")
@@ -55,11 +59,13 @@ pub fn check_args() -> Args
     let a24_hours = matches.occurrences_of("24_hours") > 0;
     let lowercase = matches.occurrences_of("lowercase") > 0;
     let no_pm = matches.occurrences_of("no_pm") > 0;
+    let show_date = matches.occurrences_of("show_date") > 0;
 
     Args
     {
         hours_color, minutes_color, 
-        pm_color, a24_hours, lowercase, no_pm
+        pm_color, a24_hours, lowercase,
+        no_pm, show_date,
     }
 }
 
@@ -73,4 +79,5 @@ pub struct Args
     pub a24_hours: bool,
     pub lowercase: bool,
     pub no_pm: bool,
+    pub show_date: bool,
 }

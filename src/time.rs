@@ -21,11 +21,7 @@ use std::
     time::Duration,
 };
 
-use chrono::
-{
-    Timelike, Local,
-    DateTime,
-};
+use chrono::prelude::*;
 
 use termion::
 {
@@ -139,5 +135,14 @@ pub fn update_time(args: &Args, now: DateTime<Local>)
                 get_color(s!(args.pm_color), DEF_PM_COLOR), 
                 line, color::Fg(color::Reset)));
         }
+    }
+
+    // If the show date flag is passed
+    // then show the date below
+    if args.show_date
+    {
+        p!(format!("\n{}{}", 
+            cursor::Right(4), 
+            now.date().format("%A %e of %B")));
     }
 }
