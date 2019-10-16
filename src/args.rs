@@ -44,7 +44,7 @@ pub fn check_args() -> Args
     .arg(Arg::with_name("show_date")
         .long("show-date")
         .multiple(false)
-        .help("Don't show AM/PM"))        
+        .help("Show the date below"))        
     .get_matches();
 
     let hours_color = if let Some(x) = matches.value_of("hours_color")
