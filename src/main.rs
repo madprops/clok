@@ -1,4 +1,4 @@
-pub const VERSION: &str = "v1.3.1";
+pub const VERSION: &str = "v1.4.0";
 pub const DEF_HOURS_COLOR: &str = "green";
 pub const DEF_MINUTES_COLOR: &str = "blue";
 pub const DEF_PM_COLOR: &str = "red";
@@ -21,13 +21,27 @@ use crate::
     screen::
     {
         change_screen,
+        exit,
+    },
+    time::
+    {
+        update_time,
     },
 };
+
+use chrono::prelude::*;
 
 // Start of the program
 fn main() 
 {
     let args = check_args();
+
+    if args.flash
+    {
+        update_time(&args, Local::now(), false);
+        exit();
+    }
+
     change_screen();
     start_ctrlc(args);
 }

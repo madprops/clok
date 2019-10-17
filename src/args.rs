@@ -44,7 +44,11 @@ pub fn check_args() -> Args
     .arg(Arg::with_name("show_date")
         .long("show-date")
         .multiple(false)
-        .help("Show the date below"))        
+        .help("Show the date below"))
+    .arg(Arg::with_name("flash")
+        .long("flash")
+        .multiple(false)
+        .help("Show once and exit"))                
     .get_matches();
 
     let hours_color = if let Some(x) = matches.value_of("hours_color")
@@ -60,12 +64,13 @@ pub fn check_args() -> Args
     let lowercase = matches.occurrences_of("lowercase") > 0;
     let no_pm = matches.occurrences_of("no_pm") > 0;
     let show_date = matches.occurrences_of("show_date") > 0;
+    let flash = matches.occurrences_of("flash") > 0;
 
     Args
     {
         hours_color, minutes_color, 
         pm_color, a24_hours, lowercase,
-        no_pm, show_date,
+        no_pm, show_date, flash,
     }
 }
 
@@ -80,4 +85,5 @@ pub struct Args
     pub lowercase: bool,
     pub no_pm: bool,
     pub show_date: bool,
+    pub flash: bool,
 }
