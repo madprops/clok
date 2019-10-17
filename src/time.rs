@@ -41,7 +41,7 @@ pub fn start_time_loop(args: Args)
         if mins != last_mins
         {
             last_mins = mins;
-            update_time(&args, now, true);
+            update_time(&args, now);
         }
 
         let sd = Duration::from_millis(TIME_LOOP_DELAY);
@@ -50,7 +50,7 @@ pub fn start_time_loop(args: Args)
 }
 
 // Update the clock
-pub fn update_time(args: &Args, now: DateTime<Local>, clear: bool)
+pub fn update_time(args: &Args, now: DateTime<Local>)
 {
     let size = termion::terminal_size().unwrap();
     let mins = now.minute();
@@ -96,18 +96,8 @@ pub fn update_time(args: &Args, now: DateTime<Local>, clear: bool)
         height = max(max(hd.1, md.1), dd.1);
     }
 
-
-    if clear
-    {
-        // Clear all
-        p!("{}", clear::All);
-    }
-
-    else
-    {
-        // Or just print a new line
-        p!("");
-    }
+    // Clear all
+    p!("{}", clear::All);
 
     // Print the hour
     for line in h.lines()
