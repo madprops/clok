@@ -143,6 +143,6 @@ pub fn update_time(args: &Args, now: DateTime<Local>)
     {
         p!(format!("\n{}{}", 
             cursor::Right(4), 
-            now.date().format("%A %e of %B")));
+            now.date().format("%A %e %B")));
     }
 }

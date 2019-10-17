@@ -1,4 +1,4 @@
-pub const VERSION: &str = "v1.3.0";
+pub const VERSION: &str = "v1.3.1";
 pub const DEF_HOURS_COLOR: &str = "green";
 pub const DEF_MINUTES_COLOR: &str = "blue";
 pub const DEF_PM_COLOR: &str = "red";
