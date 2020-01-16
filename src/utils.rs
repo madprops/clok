@@ -3,13 +3,14 @@ use crate::
     s,
 };
 
+use std::str;
 use termion::color;
 use figlet_rs::FIGfont;
 
 // Return a fig string
 pub fn get_string(s: &str) -> String
 {
-    let font = FIGfont::from_file("colossal.flf");
+    let font = FIGfont::from_content(str::from_utf8(include_bytes!("../colossal.flf")).unwrap());
     let fig = font.convert(s).unwrap().to_string();
     let s = s!(fig.replace("$", " ").trim_end()); s
 }
